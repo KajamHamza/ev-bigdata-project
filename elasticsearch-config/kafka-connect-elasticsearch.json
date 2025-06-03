@@ -1,0 +1,29 @@
+{
+  "name": "ev-elasticsearch-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics": "ev-processed",
+    "connection.url": "http://elasticsearch:9200",
+    "type.name": "_doc",
+    "key.ignore": "false",
+    "schema.ignore": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "behavior.on.null.values": "ignore",
+    "behavior.on.malformed.documents": "warn",
+    "batch.size": "100",
+    "max.buffered.records": "1000",
+    "flush.timeout.ms": "10000",
+    "retry.backoff.ms": "100",
+    "max.retries": "5",
+    "connection.timeout.ms": "1000",
+    "read.timeout.ms": "3000",
+    "max.in.flight.requests": "5",
+    "linger.ms": "1000",
+    "errors.tolerance": "all",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true"
+  }
+} 

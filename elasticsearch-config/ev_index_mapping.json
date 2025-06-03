@@ -1,0 +1,226 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "index": {
+      "refresh_interval": "1s",
+      "max_result_window": 50000
+    }
+  },
+  "mappings": {
+    "properties": {
+      "timestamp": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis"
+      },
+      "processing_timestamp": {
+        "type": "date",
+        "format": "strict_date_optional_time||epoch_millis"
+      },
+      "vehicle_id": {
+        "type": "keyword"
+      },
+      "location": {
+        "properties": {
+          "latitude": {
+            "type": "float"
+          },
+          "longitude": {
+            "type": "float"
+          },
+          "altitude": {
+            "type": "float"
+          },
+          "coordinates": {
+            "type": "geo_point"
+          }
+        }
+      },
+      "motion": {
+        "properties": {
+          "speed": {
+            "type": "float",
+            "index": true
+          },
+          "acceleration": {
+            "type": "float"
+          },
+          "heading": {
+            "type": "float"
+          }
+        }
+      },
+      "battery": {
+        "properties": {
+          "level": {
+            "type": "float",
+            "index": true
+          },
+          "voltage": {
+            "type": "float"
+          },
+          "current": {
+            "type": "float"
+          },
+          "temperature": {
+            "type": "float",
+            "index": true
+          },
+          "capacity": {
+            "type": "float"
+          },
+          "estimated_range": {
+            "type": "float"
+          }
+        }
+      },
+      "energy": {
+        "properties": {
+          "consumption": {
+            "type": "float"
+          },
+          "regeneration": {
+            "type": "float"
+          },
+          "efficiency": {
+            "type": "float"
+          }
+        }
+      },
+      "vehicle_status": {
+        "properties": {
+          "driving_pattern": {
+            "type": "keyword"
+          },
+          "odometer": {
+            "type": "float"
+          },
+          "trip_distance": {
+            "type": "float"
+          },
+          "engine_temp": {
+            "type": "float"
+          },
+          "tire_pressure": {
+            "type": "float"
+          }
+        }
+      },
+      "diagnostics": {
+        "properties": {
+          "alerts": {
+            "type": "keyword"
+          },
+          "error_codes": {
+            "type": "keyword"
+          },
+          "maintenance_due": {
+            "type": "boolean"
+          }
+        }
+      },
+      "environmental": {
+        "properties": {
+          "outside_temp": {
+            "type": "float"
+          },
+          "humidity": {
+            "type": "float"
+          },
+          "air_quality_index": {
+            "type": "integer"
+          }
+        }
+      },
+      "statistics": {
+        "properties": {
+          "speed_stats": {
+            "properties": {
+              "avg_speed": {
+                "type": "float"
+              },
+              "max_speed": {
+                "type": "float"
+              },
+              "min_speed": {
+                "type": "float"
+              },
+              "speed_variance": {
+                "type": "float"
+              }
+            }
+          },
+          "battery_stats": {
+            "properties": {
+              "avg_battery": {
+                "type": "float"
+              },
+              "battery_trend": {
+                "type": "keyword"
+              },
+              "battery_change_rate": {
+                "type": "float"
+              }
+            }
+          },
+          "energy_stats": {
+            "properties": {
+              "avg_consumption": {
+                "type": "float"
+              },
+              "total_consumption": {
+                "type": "float"
+              }
+            }
+          }
+        }
+      },
+      "anomalies": {
+        "type": "nested",
+        "properties": {
+          "type": {
+            "type": "keyword"
+          },
+          "value": {
+            "type": "float"
+          },
+          "threshold": {
+            "type": "float"
+          },
+          "severity": {
+            "type": "keyword"
+          }
+        }
+      },
+      "derived_metrics": {
+        "properties": {
+          "estimated_distance_m": {
+            "type": "float"
+          },
+          "efficiency_kwh_per_100km": {
+            "type": "float"
+          },
+          "battery_health_score": {
+            "type": "float"
+          },
+          "driving_behavior": {
+            "type": "keyword"
+          }
+        }
+      },
+      "data_quality": {
+        "properties": {
+          "completeness_score": {
+            "type": "float"
+          },
+          "freshness_seconds": {
+            "type": "integer"
+          },
+          "accuracy_flags": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+} 
